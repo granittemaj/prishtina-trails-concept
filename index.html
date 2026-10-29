@@ -124,56 +124,60 @@ h1,h2,h3{margin:0;font-weight:800;font-stretch:108%;letter-spacing:-.025em;line-
 .drawer a{font-size:2.4rem;font-weight:800;font-stretch:110%;text-decoration:none;letter-spacing:-.02em}
 .drawer .x{position:absolute;top:16px;right:var(--g)}
 
-/* ───────── hero ───────── */
-.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;color:#fff;background:var(--night);overflow:hidden;isolation:isolate;padding:110px 0 120px}
-.hero-photo{position:absolute;inset:-4%;z-index:-3;will-change:transform}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:grayscale(1) contrast(1.15) brightness(.55)}
+/* ───────── hero (v1 composition, Archivo condensed) ───────── */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;color:#fff;background:var(--night);overflow:hidden;isolation:isolate}
+.hero-photo{position:absolute;inset:-6% -2% -2%;z-index:-3;will-change:transform}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:kenburns 26s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,1%)}}
 .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:
-  radial-gradient(60% 50% at 50% 55%,rgba(143,199,98,.22),transparent 70%),
-  linear-gradient(180deg,rgba(6,21,20,.7),rgba(6,21,20,.25) 35%,rgba(6,21,20,.55) 70%,var(--night))}
-.hero::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--lime);mix-blend-mode:color;opacity:.28}
-.words{position:absolute;inset:0;z-index:-1;display:flex;flex-direction:column;justify-content:center;gap:1.5vw;pointer-events:none;transform:rotate(-6deg) scale(1.15)}
-.words .row{display:flex;white-space:nowrap;width:max-content;font-size:clamp(4.5rem,13vw,12rem);font-weight:900;font-stretch:125%;letter-spacing:-.03em;line-height:.9;text-transform:uppercase;animation:slide 70s linear infinite}
-.words .row span{padding-right:.35em}
-.words .row:nth-child(1){color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.16)}
-.words .row:nth-child(2){color:rgba(143,199,98,.16);animation-direction:reverse;animation-duration:60s}
-.words .row:nth-child(3){color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.12);animation-duration:80s}
-@keyframes slide{to{transform:translateX(-50%)}}
-.hero .badge{width:76px;height:76px;margin:0 auto 22px;filter:drop-shadow(0 10px 30px rgba(0,0,0,.4));opacity:0;animation:up .9s .1s var(--ease) forwards}
-.hero .meta{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:24px;opacity:0;animation:up .9s .2s var(--ease) forwards}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(143,199,98,.7);animation:pulse 2s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(143,199,98,0)}100%{box-shadow:0 0 0 0 rgba(143,199,98,0)}}
-.hero h1{font-size:clamp(2.9rem,7.2vw,6.4rem);font-weight:900;font-stretch:112%;letter-spacing:-.035em;line-height:.95}
-.hero h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
-.hero h1 .l>span{display:block;transform:translateY(105%);animation:rise 1s var(--ease) forwards}
-.hero h1 .l:nth-child(2)>span{animation-delay:.12s;color:var(--lime)}
+  radial-gradient(120% 80% at 80% 10%,rgba(6,21,20,.15),rgba(6,21,20,.75) 60%),
+  linear-gradient(180deg,rgba(6,21,20,.55) 0%,rgba(6,21,20,.2) 30%,rgba(6,21,20,.85) 78%,var(--night) 100%),
+  linear-gradient(90deg,rgba(6,21,20,.8),transparent 60%)}
+.topo{position:absolute;left:72%;top:40%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;z-index:-1;pointer-events:none;mix-blend-mode:screen;opacity:.6;will-change:transform;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.grain{position:absolute;inset:0;z-index:-1;opacity:.12;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-inner{flex:1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.75fr);align-items:end;gap:40px;padding-top:150px;padding-bottom:24px}
+.hero h1{font-size:clamp(4.2rem,13vw,13rem);font-weight:900;font-stretch:62%;letter-spacing:-.01em;line-height:.84;text-transform:uppercase}
+.hero h1 .row{display:block;overflow:hidden;padding-bottom:.03em}
+.hero h1 .ch{display:inline-block;transform:translateY(105%);animation:rise .9s var(--ease) forwards}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.92)}
+.hero h1 .lime{color:var(--lime)}
+.hero h1 .yr{display:inline-block;font-size:.4em;font-stretch:100%;color:var(--orange);vertical-align:top;margin-left:.14em;transform:translateY(105%);animation:yr .9s .9s var(--ease) forwards}
+@keyframes yr{to{transform:translateY(.2em) rotate(-4deg)}}
 @keyframes rise{to{transform:none}}
 @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.hero p{max-width:560px;margin:22px auto 30px;color:rgba(255,255,255,.8);font-size:clamp(1rem,1.3vw,1.12rem);opacity:0;animation:up .9s .45s var(--ease) forwards}
-.hero .ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;opacity:0;animation:up .9s .55s var(--ease) forwards}
-.hero .count{display:flex;justify-content:center;gap:clamp(14px,3vw,34px);margin-top:44px;opacity:0;animation:up .9s .7s var(--ease) forwards}
-.hero .count div{min-width:64px}
-.hero .count b{display:block;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;font-stretch:112%;letter-spacing:-.02em;line-height:1}
-.hero .count span{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.hero .count i{width:1px;background:rgba(255,255,255,.14)}
-.hero-line{position:absolute;inset:auto 0 0;height:110px;z-index:-1;opacity:.9}
-.hero-line svg{width:100%;height:100%;display:block}
-#heroPath{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 3s .5s var(--ease) forwards}
+.hero-lede{max-width:540px;font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(255,255,255,.86);margin:24px 0 28px;opacity:0;animation:up .9s .9s var(--ease) forwards}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:up .9s 1.05s var(--ease) forwards}
+.count-card{background:rgba(8,32,30,.55);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border-radius:var(--r);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 40px 80px -40px rgba(0,0,0,.8);padding:20px;opacity:0;animation:up 1s 1.2s var(--ease) forwards}
+.count-card header{display:flex;justify-content:space-between;gap:10px;margin-bottom:14px;color:rgba(255,255,255,.7);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.countdown div{background:rgba(255,255,255,.06);border-radius:14px;padding:12px 4px 10px;text-align:center}
+.countdown b{display:block;font-size:clamp(2rem,3.2vw,2.8rem);font-weight:900;font-stretch:75%;line-height:1}
+.countdown span{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.race-pills{display:grid;gap:8px;margin-top:12px}
+.race-pill{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:14px;background:rgba(255,255,255,.05);text-decoration:none;transition:background .2s,transform .25s var(--ease)}
+.race-pill:hover{background:rgba(255,255,255,.11);transform:translateX(4px)}
+.race-pill i{width:44px;height:30px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-weight:900;font-stretch:80%;font-size:1.05rem;color:var(--on-fill)}
+.race-pill strong{font-weight:800;font-size:.95rem}
+.race-pill small{display:block;font-size:.68rem;opacity:.65}
+.race-pill em{margin-left:auto;font-style:normal;font-weight:800;font-size:.9rem}
+.hero-profile{position:relative;height:clamp(90px,13vw,160px)}
+.hero-profile svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hero-profile .labels{position:absolute;inset:auto 0 8px;display:flex;justify-content:space-between;gap:10px;padding-inline:var(--g);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+#heroPath{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 3.2s .6s cubic-bezier(.7,0,.2,1) forwards}
+#heroFill{opacity:0;animation:fadein 1.5s 2.6s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
-.scroll-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:.64rem;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.55);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
-.scroll-hint::after{content:"";width:1px;height:34px;background:linear-gradient(rgba(255,255,255,.7),transparent);animation:hint 1.8s infinite}
-@keyframes hint{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fadein{to{opacity:1}}
+.runner{position:absolute;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--orange);box-shadow:0 0 14px 3px var(--orange);opacity:0;will-change:transform;pointer-events:none}
+@media (max-width:960px){.hero-inner{grid-template-columns:1fr;align-items:start;padding-top:140px}.count-card{max-width:480px}}
+@media (max-width:560px){.hero-profile .labels span:nth-child(2){display:none}}
 
-/* ───────── distance band ───────── */
-.band{background:var(--lime);color:var(--on-fill)}
-.band .in{display:grid;grid-template-columns:repeat(3,1fr)}
-.band a{display:flex;align-items:center;justify-content:center;gap:16px;padding:30px 12px;text-decoration:none;border-left:1px solid rgba(11,31,29,.18);transition:background .25s}
-.band a:first-child{border-left:0}
-.band a:hover{background:rgba(255,255,255,.18)}
-.band b{font-size:clamp(2rem,3.6vw,3rem);font-weight:900;font-stretch:115%;letter-spacing:-.03em;line-height:1}
-.band span{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;line-height:1.5}
-@media (max-width:700px){.band .in{grid-template-columns:1fr}.band a{border-left:0;border-top:1px solid rgba(11,31,29,.18);justify-content:flex-start;padding:18px 4px}.band a:first-child{border-top:0}}
+/* ───────── marquee ───────── */
+.marquee{background:var(--lime);color:var(--on-fill);overflow:hidden;border-block:2px solid var(--on-fill);transform:rotate(-1.2deg);margin:-14px -10px 0;position:relative;z-index:3}
+.marquee .track{display:flex;width:max-content;animation:slide 40s linear infinite}
+.marquee span{display:flex;align-items:center;gap:26px;padding:15px 13px;font-size:clamp(1.3rem,2.4vw,2rem);font-weight:900;font-stretch:80%;text-transform:uppercase;white-space:nowrap;line-height:1}
+.marquee svg{width:20px;height:20px;flex:none}
+@keyframes slide{to{transform:translateX(-50%)}}
 
 /* ───────── race cards ───────── */
 .races{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -288,13 +292,14 @@ h1,h2,h3{margin:0;font-weight:800;font-stretch:108%;letter-spacing:-.025em;line-
 @media (max-width:1000px){.explorer{grid-template-columns:1fr}.mapcard{min-height:460px;order:-1}}
 
 /* ───────── numbers ───────── */
-.nums{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
-.nums div{padding:clamp(26px,4vw,44px) clamp(14px,2vw,24px);border-left:1px solid var(--line)}
-.nums div:first-child{border-left:0}
-.nums b{display:block;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:900;font-stretch:115%;letter-spacing:-.04em;line-height:.9}
-.nums b small{font-size:.42em;color:var(--lime-ink);margin-left:3px;letter-spacing:0}
-.nums p{margin:10px 0 0;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);max-width:24ch}
-@media (max-width:820px){.nums{grid-template-columns:repeat(2,1fr)}.nums div:nth-child(3){border-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--line)}}
+.stats4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{border-radius:var(--r);background:var(--card);box-shadow:inset 0 0 0 1px var(--line);padding:24px;display:flex;flex-direction:column;gap:10px}
+.stat .label{color:var(--lime-ink)}
+.stat b{font-size:clamp(2.6rem,4.6vw,3.8rem);font-weight:900;font-stretch:112%;letter-spacing:-.04em;line-height:.9}
+.stat b small{font-size:.45em;font-weight:800;letter-spacing:-.01em;color:var(--muted);margin-left:4px}
+.stat p{margin:0;color:var(--muted);font-size:.95rem}
+@media (max-width:900px){.stats4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.stats4{grid-template-columns:1fr}}
 
 /* ───────── runners ───────── */
 .runners{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -385,11 +390,13 @@ h1,h2,h3{margin:0;font-weight:800;font-stretch:108%;letter-spacing:-.025em;line-
 .news .more{font-weight:700;color:var(--lime-ink);display:inline-flex;gap:8px;align-items:center}
 @media (max-width:820px){.news{grid-template-columns:1fr}.news .img{min-height:240px}}
 
-.final{position:relative;overflow:hidden;isolation:isolate;background:var(--night);color:#fff;text-align:center;padding:clamp(100px,12vw,170px) 0}
-.final .words{transform:rotate(-6deg) scale(1.1)}
-.final h2{font-size:clamp(2.6rem,7vw,6rem);font-weight:900;font-stretch:115%;letter-spacing:-.04em;line-height:.95}
+.final{position:relative;overflow:hidden;isolation:isolate;background:var(--night);color:#fff;text-align:center;padding-block:clamp(110px,14vw,190px)}
+.final .topo{left:50%;top:50%;opacity:.5}
+.final .eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--lime);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.final .eyebrow::before,.final .eyebrow::after{content:"";width:28px;height:2px;background:currentColor}
+.final h2{margin-top:18px;font-size:clamp(4rem,13vw,12rem);font-weight:900;font-stretch:62%;letter-spacing:-.01em;line-height:.84;text-transform:uppercase}
 .final h2 span{background:linear-gradient(90deg,var(--lime),var(--yellow),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
-.final p{color:rgba(255,255,255,.75);max-width:520px;margin:20px auto 30px}
+.final p{color:rgba(255,255,255,.8);max-width:540px;margin:24px auto 32px;font-size:1.1rem}
 .final .ctas{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
 .stay{display:grid;grid-template-columns:1fr minmax(0,480px);gap:30px;align-items:center}
@@ -403,14 +410,62 @@ h1,h2,h3{margin:0;font-weight:800;font-stretch:108%;letter-spacing:-.025em;line-
 .msg{min-height:1.3em;font-size:.88rem;color:var(--lime-ink)}
 @media (max-width:820px){.stay{grid-template-columns:1fr}}
 
-.partners{padding:44px 0;border-top:1px solid var(--line);overflow:hidden}
-.partners .head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:24px}
-.logos{display:flex;width:max-content;align-items:center;animation:slide 55s linear infinite}
-.logos:hover{animation-play-state:paused}
-.logos img{height:40px;width:auto;margin-right:52px;opacity:.6;filter:grayscale(1) brightness(0) invert(1);transition:opacity .2s}
-.logos img:hover{opacity:1}
-:root[data-theme="light"] .logos img{filter:grayscale(1) brightness(0)}
-@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .logos img{filter:grayscale(1) brightness(0)}}
+/* ───────── partners (mitro-style wall) ───────── */
+.partners{border-top:1px solid var(--line)}
+.p-group+.p-group{margin-top:52px}
+.p-group>.label{display:block;color:var(--muted);margin-bottom:22px}
+.org{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.org img{height:84px;width:auto}
+.org p{margin:0;max-width:52ch;color:var(--muted)}
+.org b{display:block;color:var(--ink);font-size:1.15rem;margin-bottom:4px}
+.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.logo-grid div{height:96px;display:grid;place-items:center;padding:16px;border-radius:14px;transition:background .25s}
+.logo-grid div:hover{background:var(--card)}
+.logo-grid img{max-height:50px;max-width:100%;width:auto;height:auto;opacity:.6;filter:grayscale(1) brightness(0) invert(1);transition:opacity .25s,filter .25s}
+.logo-grid div:hover img{opacity:1;filter:none}
+.org img{filter:brightness(0) invert(1)}
+:root[data-theme="light"] .logo-grid img,:root[data-theme="light"] .logo-grid div:hover img,:root[data-theme="light"] .org img{filter:grayscale(1) brightness(0)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .logo-grid img,:root:not([data-theme="dark"]) .logo-grid div:hover img,:root:not([data-theme="dark"]) .org img{filter:grayscale(1) brightness(0)}}
+@media (max-width:900px){.logo-grid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){.logo-grid{grid-template-columns:repeat(3,1fr)}.logo-grid div{height:76px;padding:12px}}
+
+/* ───────── rules modal ───────── */
+html.modal-open{overflow:hidden}
+dialog.rules{width:min(1000px,calc(100% - 24px));height:min(86vh,880px);max-height:none;max-width:none;padding:0;border:0;border-radius:24px;background:var(--bg);color:var(--ink);box-shadow:0 40px 120px -20px rgba(0,0,0,.6),inset 0 0 0 1px var(--line);overflow:hidden}
+dialog.rules[open]{display:flex;flex-direction:column;animation:pop .45s var(--ease)}
+dialog.rules::backdrop{background:rgba(4,14,13,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.98)}}
+.r-head{display:flex;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line)}
+.r-head .label{color:var(--lime-ink)}
+.r-head h2{font-size:clamp(1.5rem,2.6vw,2rem);margin-top:4px}
+.r-head .ibtn{margin-left:auto;flex:none;background:var(--line);color:var(--ink)}
+.r-body{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:0;flex:1}
+.r-toc{border-right:1px solid var(--line);padding:14px 12px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+.r-toc a{display:flex;gap:10px;padding:8px 10px;border-radius:10px;font-size:.88rem;font-weight:600;color:var(--muted);text-decoration:none;transition:background .2s,color .2s}
+.r-toc a span{color:var(--lime-ink);font-weight:800;min-width:18px}
+.r-toc a:hover,.r-toc a.on{background:var(--line);color:var(--ink)}
+.r-content{overflow-y:auto;padding:4px 32px 32px;overscroll-behavior:contain}
+.r-content section{padding-top:26px;scroll-margin-top:8px}
+.r-content h3{font-size:1.25rem;letter-spacing:-.01em;display:flex;gap:10px;margin-bottom:12px}
+.r-content h3 span{color:var(--lime-ink)}
+.r-content>section>p{margin:0;color:var(--muted);max-width:68ch}
+.r-content ol{margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:72ch}
+.r-content li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:6px;color:var(--muted);font-size:.95rem}
+.r-content li>b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.r-content li ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+.r-cut{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.r-cut div{border-radius:12px;padding:10px 12px;background:var(--card);box-shadow:inset 0 0 0 1px var(--line)}
+.r-cut small{display:block;font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.r-cut b{font-size:1.2rem;font-weight:800;color:var(--ink)}
+.r-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 24px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+@media (max-width:760px){
+  dialog.rules{height:calc(100% - 24px);border-radius:20px}
+  .r-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+  .r-toc{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px 12px}
+  .r-toc a{white-space:nowrap}
+  .r-content{padding:0 18px 24px}
+  .r-head{padding:16px 18px}.r-foot{padding:12px 18px}
+}
 
 footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;font-size:.94rem}
 .foot{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}
@@ -441,7 +496,8 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .hero h1 .l>span{transform:none}.rv{opacity:1;transform:none}
-  .words .row,.np .row,.logos{animation:none}
+  .marquee .track,.np .row,.topo,.hero-photo img{animation:none}
+  .hero h1 .yr{transform:translateY(.2em) rotate(-4deg)}.hero-lede,.hero-ctas,.count-card{opacity:1}
 }
 </style>
 </head>
@@ -475,52 +531,51 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="h1">
-  <div class="hero-photo" id="heroPhoto"><img src="https://prishtinatrails.com/wp-content/uploads/2026/05/DSC09993-1536x1024.jpg" alt="" fetchpriority="high"></div>
-  <div class="words" aria-hidden="true">
-    <div class="row" data-w="Gërmia"></div>
-    <div class="row" data-w="Prishtina Trails 2027"></div>
-    <div class="row" data-w="10K · 23K · 50K"></div>
+  <div class="hero-photo" id="heroPhoto"><img src="https://prishtinatrails.com/wp-content/uploads/2025/12/Q__0513-2048x1365.jpg" alt="" fetchpriority="high"></div>
+  <canvas class="topo" id="heroTopo" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <h1 id="h1" aria-label="Prishtina Trails 2027">
+        <span class="row outline" data-split>Prishtina</span>
+        <span class="row lime"><span data-split data-delay=".25">Trails</span><span class="yr" aria-hidden="true">’27</span></span>
+      </h1>
+      <p class="hero-lede">Kosovo’s biggest trail-running festival returns to the forests of Gërmia. 10K, 23K or 50K, plus kids’ races. Run at your own pace, connect with nature, and be part of the community.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://tickets.prishtinatrails.com/event/prishtina-trails-2027/">Register for 2027 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#course">Explore the courses</a>
+      </div>
+    </div>
+    <aside class="count-card" aria-label="Countdown to race day">
+      <header><span>Ultra start · 06:00</span><span>9 May 2027</span></header>
+      <div class="countdown tnum" role="timer">
+        <div><b data-cd="d">000</b><span>Days</span></div>
+        <div><b data-cd="h">00</b><span>Hrs</span></div>
+        <div><b data-cd="m">00</b><span>Min</span></div>
+        <div><b data-cd="s">00</b><span>Sec</span></div>
+      </div>
+      <div class="race-pills">
+        <a class="race-pill" href="#course" data-pick="10k"><i style="background:var(--lime)">10</i><div><strong>Base</strong><small>480 m D+ · 10:00</small></div><em>€20</em></a>
+        <a class="race-pill" href="#course" data-pick="23k"><i style="background:var(--yellow)">23</i><div><strong>Half</strong><small>1,042 m D+ · 08:00</small></div><em>€25</em></a>
+        <a class="race-pill" href="#course" data-pick="50k"><i style="background:var(--orange)">50</i><div><strong>Ultra</strong><small>2,021 m D+ · 06:00</small></div><em>€30</em></a>
+      </div>
+    </aside>
   </div>
-  <div class="wrap">
-    <img class="badge" src="https://prishtinatrails.com/wp-content/uploads/2026/08/output-onlinepngtools-300x300.png" alt="" width="76" height="76">
-    <div class="meta">
-      <span class="pill"><span class="dot"></span>Registration open</span>
-      <span class="pill">9th edition</span>
-      <span class="pill">09.05.2027 · Gërmia Park</span>
-    </div>
-    <h1 id="h1"><span class="l"><span>Gërmia’s finest</span></span><span class="l"><span>trails.</span></span></h1>
-    <p>Kosovo’s biggest trail-running festival. 10K, 23K and 50K through the forest above Prishtina, plus kids’ races. Recognised by UTMB Index and ITRA.</p>
-    <div class="ctas">
-      <a class="btn" href="#races">Register for 2027 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn ghost" href="#course">Explore the courses</a>
-    </div>
-    <div class="count tnum" role="timer" aria-label="Time until the Ultra start">
-      <div><b data-cd="d">000</b><span>Days</span></div><i></i>
-      <div><b data-cd="h">00</b><span>Hours</span></div><i></i>
-      <div><b data-cd="m">00</b><span>Minutes</span></div><i></i>
-      <div><b data-cd="s">00</b><span>Seconds</span></div>
-    </div>
-  </div>
-  <div class="hero-line" aria-hidden="true">
-    <svg viewBox="0 0 1000 110" preserveAspectRatio="none">
+  <div class="hero-profile" id="heroProfile" aria-hidden="true">
+    <svg viewBox="0 0 1000 160" preserveAspectRatio="none">
       <defs>
         <linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#8FC762"/><stop offset=".5" stop-color="#F2E94E"/><stop offset="1" stop-color="#FF701C"/></linearGradient>
-        <linearGradient id="hf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8FC762" stop-opacity=".22"/><stop offset="1" stop-color="#8FC762" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8FC762" stop-opacity=".28"/><stop offset="1" stop-color="#8FC762" stop-opacity="0"/></linearGradient>
       </defs>
       <path id="heroFill" fill="url(#hf)"/>
-      <path id="heroPath" fill="none" stroke="url(#hg)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+      <path id="heroPath" fill="none" stroke="url(#hg)" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
     </svg>
+    <span class="runner" id="runner"></span>
+    <div class="labels"><span>0 km · Amphitheatre</span><span>Ultra profile · 2,021 m D+</span><span>50 km · Finish</span></div>
   </div>
-  <div class="scroll-hint">Scroll</div>
 </section>
 
-<div class="band" aria-label="Distances">
-  <div class="wrap in">
-    <a href="#course" data-pick="10k"><b>10K</b><span>Base<br>10:00 · €20</span></a>
-    <a href="#course" data-pick="23k"><b>23K</b><span>Half<br>08:00 · €25</span></a>
-    <a href="#course" data-pick="50k"><b>50K</b><span>Ultra<br>06:00 · €30</span></a>
-  </div>
-</div>
+<div class="marquee" aria-hidden="true"><div class="track" id="marq"></div></div>
 
 <!-- 01 RACES -->
 <section class="sec" id="races" aria-labelledby="racesH">
@@ -586,7 +641,7 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
         <div class="c-actions">
           <a class="btn" id="cReg" href="https://tickets.prishtinatrails.com/event/prishtina-trails-2027/">Register for Base <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn line sm" id="cGpx" href="#">Download GPX</a>
-          <a class="btn line sm" href="https://prishtinatrails.com/wp-content/uploads/2025/09/Prishtina-Trails-Regullat-dhe-Regulloret-v2026.docx.pdf">Rules</a>
+          <button class="btn line sm" type="button" data-rules>Rules</button>
         </div>
       </div>
 
@@ -608,12 +663,12 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
 </section>
 
 <!-- NUMBERS -->
-<section aria-label="Prishtina Trails in numbers">
-  <div class="wrap nums tnum">
-    <div class="rv"><b>9<small>th</small></b><p>Edition of Kosovo’s largest trail race</p></div>
-    <div class="rv d1"><b data-n="3">0</b><p>Trail distances plus kids’ races</p></div>
-    <div class="rv d2"><b data-n="2021">0<small>m</small></b><p>Of climbing on the 50K Ultra</p></div>
-    <div class="rv d3"><b data-n="15">0<small>kg</small></b><p>Of plastic upcycled into medals</p></div>
+<section class="sec" style="padding-bottom:0" aria-label="Prishtina Trails in numbers">
+  <div class="wrap stats4 tnum">
+    <div class="stat rv"><span class="label">Edition</span><b>9<small>th</small></b><p>The ninth edition of Kosovo’s largest trail race.</p></div>
+    <div class="stat rv d1"><span class="label">Distances</span><b data-n="3">0</b><p>Trail courses, plus dedicated kids’ races.</p></div>
+    <div class="stat rv d2"><span class="label">Ultra climb</span><b data-n="2021">0<small>m</small></b><p>Of elevation gain on the 50K Ultra.</p></div>
+    <div class="stat rv d3"><span class="label">Upcycled</span><b data-n="15">0<small>kg</small></b><p>Of plastic caps turned into finisher medals.</p></div>
   </div>
 </section>
 
@@ -637,7 +692,7 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
           <li><div><b>Start list</b><small>Published closer to race day</small></div><span class="st wait">Coming soon</span></li>
           <li><div><b>Bib pick-up</b><small>Details announced soon</small></div><span class="st wait">Not active</span></li>
           <li><div><b>Schedule</b><small>Kids’ races, awards and more</small></div><span class="st wait">TBA</span></li>
-          <li><div><b>Rules &amp; regulations</b><small>Read before you register</small></div><a class="st ok" href="https://prishtinatrails.com/wp-content/uploads/2025/09/Prishtina-Trails-Regullat-dhe-Regulloret-v2026.docx.pdf" style="text-decoration:none">Read</a></li>
+          <li><div><b>Rules &amp; regulations</b><small>Read before you register</small></div><button class="st ok" type="button" data-rules style="border:0;cursor:pointer">Read</button></li>
         </ul>
       </div>
       <div class="box dark rv">
@@ -734,6 +789,7 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
       <details><summary>Does my result count for UTMB or ITRA?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Yes. Prishtina Trails is recognised by both the UTMB Index and ITRA.</p></details>
       <details><summary>Will there be cups at the aid stations?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>No. We provide the water; you bring your own bottle or reusable cup. There is no single-use plastic during the race.</p></details>
       <details><summary>Can I donate to charity?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Yes. When you register you can add a donation of any amount to a Kosovo organisation of your choice. We pass every donation on.</p></details>
+      <details><summary>Where can I read the full rules?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Everything from eligibility and cut-offs to environmental rules and penalties. <button class="btn line sm" type="button" data-rules style="margin-top:12px">Open the rules</button></p></details>
     </div>
   </div>
 </section>
@@ -751,16 +807,12 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
 
 <!-- FINAL -->
 <section class="final" aria-labelledby="finalH">
-  <div class="words" aria-hidden="true">
-    <div class="row" data-w="2027 is waiting"></div>
-    <div class="row" data-w="Gërmia"></div>
-    <div class="row" data-w="Register here"></div>
-  </div>
+  <canvas class="topo" id="finalTopo" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="kicker label rv" style="justify-content:center"><b>2027</b><span style="color:rgba(255,255,255,.6)">is waiting</span></div>
-    <h2 class="rv d1" id="finalH">See you at<br><span>the start line.</span></h2>
-    <p class="rv d2">We’ve been building this for a long time. Prishtina Trails 2027 is officially open for registration.</p>
-    <div class="ctas rv d3"><a class="btn" href="https://tickets.prishtinatrails.com/event/prishtina-trails-2027/">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="#course">See the courses</a></div>
+    <span class="eyebrow rv">2027 is waiting</span>
+    <h2 class="rv d1" id="finalH">See you at<br><span>the start.</span></h2>
+    <p class="rv d2">We’ve been building this for a long time. Prishtina Trails 2027 is officially open for registration. Spaces are limited.</p>
+    <div class="ctas rv d3"><a class="btn" href="https://tickets.prishtinatrails.com/event/prishtina-trails-2027/">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="#runners">Runner info</a></div>
   </div>
 </section>
 
@@ -777,9 +829,18 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
   </div>
 </section>
 
-<section class="partners" aria-labelledby="pH">
-  <div class="wrap head"><span class="label muted" id="pH">Partners &amp; sponsors</span><span class="label" style="color:var(--lime-ink)">Organised by X Trailers running club</span></div>
-  <div class="logos" id="logos"></div>
+<section class="sec partners" id="partners" aria-labelledby="pH">
+  <div class="wrap">
+    <div class="kicker label rv"><b>08</b><span id="pH">Organiser &amp; partners</span></div>
+    <div class="p-group rv">
+      <span class="label">Organiser</span>
+      <div class="org"><img src="https://prishtinatrails.com/wp-content/uploads/2025/07/Group-1-1.png" alt="X Trailers running club" width="76" height="84"><p><b>X Trailers running club</b>A non-profit athletic club based in Prishtina, organising Prishtina Trails with local and international partners.</p></div>
+    </div>
+    <div class="p-group rv">
+      <span class="label">Partners &amp; sponsors</span>
+      <div class="logo-grid" id="logos"></div>
+    </div>
+  </div>
 </section>
 </main>
 
@@ -802,6 +863,21 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
     <div class="legal"><span>© 2027 Prishtina Trails · X Trailers</span><span>Design mockup · not the live site</span></div>
   </div>
 </footer>
+
+<dialog class="rules" id="rules" aria-labelledby="rulesH">
+  <div class="r-head">
+    <div><span class="label">Official rules · 2026 edition</span><h2 id="rulesH">Rules &amp; regulations</h2></div>
+    <button class="ibtn" type="button" id="rulesClose" aria-label="Close rules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="r-body">
+    <nav class="r-toc" id="rulesToc" aria-label="Rules sections"></nav>
+    <div class="r-content" id="rulesContent" tabindex="0"></div>
+  </div>
+  <div class="r-foot">
+    <span>English summary of the official document, which is in Albanian.</span>
+    <a class="btn line sm" href="https://prishtinatrails.com/wp-content/uploads/2025/09/Prishtina-Trails-Regullat-dhe-Regulloret-v2026.docx.pdf">Original PDF (Albanian) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+  </div>
+</dialog>
 
 <div class="dock" id="dock" aria-label="Registration shortcut">
   <div class="who"><b>Prishtina Trails 2027</b><small>9 May · Registration open</small></div>
@@ -837,8 +913,6 @@ const ROUTES = {"10k":[[42.67312,21.19966,666,0.0],[42.67339,21.19937,666,0.04],
   $$('a', drawer).forEach(a => a.addEventListener('click', () => setDrawer(false)));
   addEventListener('keydown', e => e.key === 'Escape' && setDrawer(false));
 
-  /* marquee words */
-  $$('.words .row').forEach(r => { const w = r.dataset.w; r.innerHTML = Array(8).fill(`<span>${w}</span>`).join(''); });
 
   /* race facts (official 2027 info) */
   const RACE = {
@@ -865,12 +939,67 @@ const ROUTES = {"10k":[[42.67312,21.19966,666,0.0],[42.67339,21.19937,666,0.04],
   $$('.race').forEach(c => c.addEventListener('pointermove', e => { const b = c.getBoundingClientRect(); c.style.setProperty('--mx', e.clientX - b.left + 'px'); c.style.setProperty('--my', e.clientY - b.top + 'px'); }));
   $$('.btn').forEach(b => b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.setProperty('--mx', e.clientX - r.left + 'px'); b.style.setProperty('--my', e.clientY - r.top + 'px'); }));
 
-  /* hero elevation line (real 50K) */
+  /* hero title: letters rise in */
+  $$('[data-split]').forEach(el => {
+    const base = parseFloat(el.dataset.delay || 0), txt = el.textContent;
+    el.textContent = '';
+    [...txt].forEach((c, i) => { const sp = document.createElement('span'); sp.className = 'ch'; sp.textContent = c; sp.setAttribute('aria-hidden', 'true'); sp.style.animationDelay = (base + i * .045) + 's'; el.appendChild(sp); });
+  });
+
+  /* contour lines: painted once to a canvas; only the canvas rotates */
+  function topo(cv, rings, seed, colA, colB) {
+    const S = 1800; cv.width = cv.height = S;
+    const c = cv.getContext('2d'); let q = seed;
+    const r = () => (q = q * 16807 % 2147483647) / 2147483647;
+    const harm = Array.from({ length: 5 }, (_, k) => ({ k: k + 2, a: (r() * .14) / (1 + k * .4), p: r() * 6.28 }));
+    for (let j = 1; j <= rings; j++) {
+      const R = j * (S / 2 / rings) * .95;
+      c.beginPath();
+      for (let n = 0; n <= 180; n++) {
+        const t = n / 180 * Math.PI * 2, m = 1 + harm.reduce((a, h) => a + h.a * Math.sin(h.k * t + h.p + j * .18), 0);
+        const x = S / 2 + Math.cos(t) * R * m * 1.15, y = S / 2 + Math.sin(t) * R * m * .9;
+        n ? c.lineTo(x, y) : c.moveTo(x, y);
+      }
+      c.closePath();
+      const major = j % 5 === 0;
+      c.strokeStyle = major ? colB : colA; c.globalAlpha = major ? .55 : .22; c.lineWidth = major ? 2.4 : 1.3; c.stroke();
+    }
+  }
+  topo($('#heroTopo'), 26, 7, '#8FC762', '#F2E94E');
+  topo($('#finalTopo'), 24, 19, '#8FC762', '#FF701C');
+
+  /* marquee */
   {
-    const p = ROUTES['50k'], W = 1000, H = 110, lo = 640, hi = 1090;
-    const d = p.map((q, i) => (i ? 'L' : 'M') + (i / (p.length - 1) * W).toFixed(1) + ' ' + (H - 8 - (q[2] - lo) / (hi - lo) * (H - 20)).toFixed(1)).join('');
-    $('#heroPath').setAttribute('d', d); $('#heroPath').style.setProperty('--len', 3000); $('#heroPath').style.strokeDasharray = 3000;
+    const star = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>';
+    const once = ['10K Base', '23K Half', '50K Ultra', 'Kids’ races', 'UTMB Index', 'ITRA', '09.05.2027', 'Gërmia Park', 'No plastic', 'Registration open'].map(w => `<span>${w}${star}</span>`).join('');
+    $('#marq').innerHTML = once + once;
+  }
+
+  /* hero elevation line (real 50K GPX) with a runner on it */
+  {
+    const p = ROUTES['50k'], W = 1000, H = 160, lo = 640, hi = 1090;
+    const xy = p.map((q, i) => [i / (p.length - 1) * W, 20 + (1 - (q[2] - lo) / (hi - lo)) * (H - 34)]);
+    const d = xy.map((v, i) => (i ? 'L' : 'M') + v[0].toFixed(1) + ' ' + v[1].toFixed(1)).join('');
+    const path = $('#heroPath');
+    path.setAttribute('d', d); path.style.setProperty('--len', 3200); path.style.strokeDasharray = 3200;
     $('#heroFill').setAttribute('d', d + `L${W} ${H}L0 ${H}Z`);
+    if (!reduce) {
+      const box = $('#heroProfile'), dot = $('#runner');
+      let bw = box.clientWidth, bh = box.clientHeight, vis = true, t0 = performance.now();
+      addEventListener('resize', () => { bw = box.clientWidth; bh = box.clientHeight; });
+      new IntersectionObserver(([en]) => { const was = vis; vis = en.isIntersecting; if (vis && !was) requestAnimationFrame(run); }).observe(box);
+      function run(now) {
+        if (!vis) return;
+        const el = (now - t0) / 1000 - 3.6;
+        if (el > 0) {
+          const v = xy[Math.round((el / 24 % 1) * (xy.length - 1))];
+          dot.style.opacity = 1;
+          dot.style.transform = `translate3d(${(v[0] / W * bw).toFixed(1)}px,${(v[1] / H * bh).toFixed(1)}px,0)`;
+        }
+        requestAnimationFrame(run);
+      }
+      requestAnimationFrame(run);
+    }
   }
 
   /* ───── course explorer ───── */
@@ -1054,11 +1183,106 @@ const ROUTES = {"10k":[[42.67312,21.19966,666,0.0],[42.67339,21.19937,666,0.04],
     }
   }
 
-  /* partners */
-  const L1 = 'https://prishtinatrails.com/wp-content/uploads/2026/04/';
-  const lg = ['prnt26_sponsor_logos_fin-01', 'prnt26_sponsor_logos_rbko', 'prnt26_sponsor_logos_fin-03', 'prnt26_sponsor_logos_fin-04', 'prnt26_sponsor_logos_sigal_new', 'prnt26_sponsor_logos_fin-06', 'prnt26_sponsor_logos_fin-07', 'prnt26_sponsor_logos_fin-08', 'prnt26_sponsor_logos_fin-09', 'prnt26_sponsor_logos_fin-10', 'prnt26_sponsor_logos_fin-11', 'prnt26_sponsor_logos-28', 'prnt26_sponsor_logos_fin-13', 'prnt26_sponsor_logos_fin-14', 'prnt26_sponsor_logos_fin-15'];
-  const one = lg.map(n => `<img src="${L1}${n}.png" alt="Sponsor logo" loading="lazy" height="40">`).join('');
-  $('#logos').innerHTML = one + one.replaceAll('alt="Sponsor logo"', 'alt="" aria-hidden="true"');
+  /* partners wall */
+  {
+    const base = 'https://prishtinatrails.com/wp-content/uploads/';
+    const files = ['2026/04/prnt26_sponsor_logos_fin-01', '2026/04/prnt26_sponsor_logos_rbko', '2026/04/prnt26_sponsor_logos_fin-03', '2026/04/prnt26_sponsor_logos_fin-04', '2026/04/prnt26_sponsor_logos_sigal_new', '2026/04/prnt26_sponsor_logos_fin-06', '2026/04/prnt26_sponsor_logos_fin-07', '2026/04/prnt26_sponsor_logos_fin-08', '2026/04/prnt26_sponsor_logos_fin-09', '2026/04/prnt26_sponsor_logos_fin-10', '2026/04/prnt26_sponsor_logos_fin-11', '2026/04/prnt26_sponsor_logos-28', '2026/04/prnt26_sponsor_logos_fin-13', '2026/04/prnt26_sponsor_logos_fin-14', '2026/04/prnt26_sponsor_logos_fin-15', '2026/04/prnt26_sponsor_logos_fin-29', '2026/04/prnt26_sponsor_logos_fin-17', '2026/04/prnt26_sponsor_logos_fin-18', '2026/04/prnt26_sponsor_logos_fin-19', '2026/04/prnt26_sponsor_logos_fin-20', '2026/04/prnt26_sponsor_logos_fin-21', '2026/05/prnt26_sponsor_logos_zhuzhu'];
+    $('#logos').innerHTML = files.map(f => `<div><img src="${base}${f}.png" alt="Partner logo" loading="lazy"></div>`).join('');
+  }
+
+  /* rules & regulations modal (official 2026 rules, translated from Albanian) */
+  {
+    const RULES = [
+      { h: 'Introduction', p: 'These rules exist to give every participant a safe, fair and enjoyable race. Trail and ultra running are demanding sports that need careful preparation, care for the environment and respect for safety protocols. By following them, runners help make an event that puts their safety, the protection of nature and the spirit of running outdoors first.' },
+      { h: 'Organisers', li: [
+        'Prishtina Trails is organised by Athletic Club X Trailers, a registered non-profit based in Prishtina, Kosovo (Sheshi Zahir Pajaziti, H5/2), together with local and international partners.',
+        'The organisers set the race route, put the necessary safety measures in place and look after the runner experience.'] },
+      { h: 'General information', li: [
+        'An annual trail-running event in the Prishtina region, especially Gërmia Park, with three race categories of different distance and elevation.',
+        'The race is held in a single stage, in semi-autonomous conditions, with time limits.',
+        'Categories: Classic 10 km, Edge 23 km and Ultra 47 km, each with its own climbing, technical terrain and changing weather.',
+        'Participants must know and follow mountain-running rules, including self-sufficiency and any park regulations.',
+        'Elite, amateur, nature and wellness runners are all welcome.'] },
+      { h: 'Eligibility', li: [
+        'Participants must be at least 18 years old, except in youth categories where these apply.',
+        'Runners must be physically prepared for the category they choose.',
+        'Registration is personal and non-transferable.',
+        'Participants sign a liability declaration before race day.',
+        'Previous trail or endurance race experience is recommended for the Ultra.',
+        'Know the route, the weather forecast and the required gear before you start.'] },
+      { h: 'Registration & payment', li: [
+        'Register through the official event page within the published deadlines.',
+        'Registration fees are non-refundable and non-transferable.',
+        'A valid medical certificate may be requested if needed.',
+        'Entry includes race participation, bib, aid-station access, medical assistance, post-race food, sponsor gifts and a finisher medal.',
+        'The organisers may offer free invitations to selected people or groups, for example to promote the race.',
+        'Late registration is not possible under any circumstances.'] },
+      { h: 'Race rules', li: [
+        'The race follows a marked trail. Leaving the marked route is strictly forbidden.',
+        'Carry the mandatory gear set by the organisers.',
+        'Aid stations are placed along the route, but some segments require self-sufficiency.',
+        { t: 'Time-limited checkpoints apply. Runners who miss them are withdrawn from the race.', cut: [['Classic 10 km', '4 h'], ['Edge 23 km', '6 h'], ['Ultra 47 km', '12 h']] },
+        'Outside help is allowed only at designated aid stations.',
+        'Pacers are not allowed unless explicitly permitted for a category.',
+        'Follow safety instructions, including suitable clothing, shoes and gear for mountain terrain.',
+        'Trekking poles are allowed but must not obstruct other runners.',
+        'Respect all volunteers and race officials and follow their instructions. Failing to do so leads to disqualification.'] },
+      { h: 'Environment', li: [
+        'Respect nature: no littering and no damage to the trail. Polluting or damaging the environment can lead to penalties, including disqualification.',
+        'Single-use plastic is discouraged. Carry a reusable cup or bottle; no plastic cups are served.',
+        'Stay on the marked trail to protect local plants and wildlife.',
+        'Keep any contact with wild animals to a minimum.'] },
+      { h: 'Safety & medical', li: [
+        'Medical teams are placed at strategic points along the route.',
+        'Report injuries or extreme fatigue to race officials immediately.',
+        'The organisers may stop any participant whose condition is not safe to continue.',
+        'Emergency numbers are printed on the race bibs.',
+        'Weather may lead to course changes or cancellation for safety reasons.',
+        'Runners must be self-sufficient and able to handle minor injuries or environmental risks.'] },
+      { h: 'Disqualification & penalties', li: [
+        { t: 'Participants can be disqualified for:', ul: ['Leaving the marked route', 'Unauthorised outside assistance', 'Failing a mandatory gear check', 'Unsporting behaviour or disrespect toward officials and other runners', 'Littering or breaking environmental rules', 'Ignoring safety instructions from race officials'] },
+        'Time penalties may be applied for minor breaches, at the officials’ discretion.'] },
+      { h: 'Rights & responsibilities', li: [
+        'The organisers are not liable for injuries, accidents or lost items.',
+        'Participants accept the inherent risks of trail running and take full responsibility for their own safety.',
+        'Runners must follow all safety protocols and officials’ instructions.',
+        'Participants behave with sportsmanship and respect toward others.'] },
+      { h: 'Image rights', li: [
+        'By registering, participants agree that photos and videos of them at the event may be used by the organisers for promotion, without compensation.'] },
+      { h: 'Fitness & liability', li: [
+        'By registering, you confirm you have read and accepted the event rules.',
+        'You confirm you are in good health, with no condition that would prevent safe participation.',
+        'You understand the risks of running in nature and over ultra distances, including injury, extreme weather and exhaustion.',
+        'You take full responsibility for your participation, release the organisers from liability and waive any claim for compensation for injury, loss or unforeseen circumstances.',
+        'Always follow the instructions of the race director and the medical team.',
+        'If medical staff judge you unfit to continue, you accept their decision.',
+        'By registering, you agree to follow these rules and regulations.'] },
+      { h: 'Final provisions', li: [
+        'The organisers may change the rules and event details if necessary.',
+        'Any dispute or unforeseen situation is resolved at the race officials’ discretion.'] }
+    ];
+    const toc = $('#rulesToc'), body = $('#rulesContent'), dlg = $('#rules');
+    toc.innerHTML = RULES.map((r, i) => `<a href="#r${i}" data-i="${i}"><span>${i || '·'}</span>${r.h}</a>`).join('');
+    body.innerHTML = RULES.map((r, i) => {
+      const items = r.li ? `<ol>${r.li.map((it, j) => {
+        const o = typeof it === 'string' ? { t: it } : it;
+        const cut = o.cut ? `<div class="r-cut tnum">${o.cut.map(c => `<div><small>${c[0]}</small><b>${c[1]}</b></div>`).join('')}</div>` : '';
+        const ul = o.ul ? `<ul>${o.ul.map(x => `<li style="display:list-item">${x}</li>`).join('')}</ul>` : '';
+        return `<li><b>${i}.${j + 1}</b><div>${o.t}${cut}${ul}</div></li>`;
+      }).join('')}</ol>` : `<p>${r.p}</p>`;
+      return `<section id="r${i}"><h3>${i ? `<span>${i}</span>` : ''}${r.h}</h3>${items}</section>`;
+    }).join('');
+    toc.addEventListener('click', e => { const a = e.target.closest('a'); if (!a) return; e.preventDefault(); $('#r' + a.dataset.i).scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' }); });
+    const links = $$('a', toc);
+    const spy = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { const i = en.target.id.slice(1); links.forEach(l => l.classList.toggle('on', l.dataset.i === i)); } }), { root: body, rootMargin: '0px 0px -70% 0px' });
+    $$('section', body).forEach(sec => spy.observe(sec));
+    const open = () => { if (dlg.open) return; dlg.showModal(); root.classList.add('modal-open'); body.scrollTop = 0; };
+    document.addEventListener('click', e => { if (e.target.closest('[data-rules]')) { e.preventDefault(); open(); } });
+    $('#rulesClose').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => root.classList.remove('modal-open'));
+    if (location.hash === '#rules') open();
+  }
 
   /* count-up */
   const io = new IntersectionObserver(es => es.forEach(en => {
@@ -1083,8 +1307,10 @@ const ROUTES = {"10k":[[42.67312,21.19966,666,0.0],[42.67339,21.19937,666,0.04],
 
   /* scroll: nav, progress, dock, parallax, active link */
   const nav = $('#nav'), prog = $('#progress'), dock = $('#dock'), photo = $('#heroPhoto');
-  let exVisible = false;
-  new IntersectionObserver(([en]) => { exVisible = en.isIntersecting; onScroll(); }, { threshold: .15 }).observe($('#explorer'));
+  // the dock hides over the map and over the closing call to action, which has its own buttons
+  const covering = new Set(); let exVisible = false;
+  const dockIO = new IntersectionObserver(es => { es.forEach(en => en.isIntersecting ? covering.add(en.target) : covering.delete(en.target)); exVisible = covering.size > 0; onScroll(); }, { threshold: .15 });
+  [$('#explorer'), $('.final')].forEach(el => dockIO.observe(el));
   const secs = ['races', 'course', 'runners', 'movement', 'gallery', 'faq'].map(id => document.getElementById(id));
   let tk = false;
   function onScroll() {
