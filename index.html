@@ -326,6 +326,63 @@ h1,h2,h3{margin:0;font-weight:800;font-stretch:108%;letter-spacing:-.025em;line-
 .np .in{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap}
 .np p{margin:0;font-weight:600;font-size:1.05rem;max-width:58ch}
 
+/* ───────── results table (live from RaceResult) ───────── */
+.rt{margin-top:clamp(28px,4vw,44px);border-radius:var(--r);background:var(--card);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.rt-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px;border-bottom:1px solid var(--line)}
+.rt-search{flex:1 1 220px;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;background:var(--line);margin-left:auto;max-width:340px}
+.rt-search svg{width:16px;height:16px;flex:none;color:var(--muted)}
+.rt-search input{flex:1;min-width:0;border:0;background:none;outline:none;font-size:.92rem}
+.rt-search:focus-within{box-shadow:inset 0 0 0 2px var(--lime)}
+.rt-scroll{max-height:560px;overflow:auto;overscroll-behavior:contain}
+.rt table{width:100%;border-collapse:collapse;font-size:.92rem;font-variant-numeric:tabular-nums}
+.rt th{position:sticky;top:0;z-index:1;background:var(--card);text-align:left;font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 14px;box-shadow:inset 0 -1px 0 var(--line);white-space:nowrap}
+.rt td{padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+.rt td.nm{white-space:normal;font-weight:700;min-width:150px}
+.rt td.nm small{display:block;font-weight:500;color:var(--muted);font-size:.78rem}
+.rt tbody tr{transition:background .2s}
+.rt tbody tr:hover{background:var(--line)}
+.rt .r{text-align:right}
+.pl{display:inline-grid;place-items:center;min-width:34px;height:28px;padding:0 6px;border-radius:8px;font-weight:800;font-size:.84rem;background:var(--line)}
+.pl.p1{background:#F2E94E;color:#0B1F1D}.pl.p2{background:#D5DCD9;color:#0B1F1D}.pl.p3{background:#E8A46C;color:#0B1F1D}
+.pl.st{background:none;color:var(--muted);font-size:.72rem;letter-spacing:.06em}
+.flag{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:800;color:var(--muted)}
+.flag img{width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px var(--line)}
+.rt-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:14px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted)}
+.rt-links{display:flex;flex-wrap:wrap;gap:8px}
+.rt-msg{padding:48px 16px;text-align:center;color:var(--muted)}
+.rt-msg a{color:var(--lime-ink);font-weight:700}
+.sk{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--line) 0%,var(--line-2) 50%,var(--line) 100%);background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (max-width:640px){.rt .c-bib,.rt .c-club,.rt .c-pace{display:none}.rt-search{max-width:none;margin-left:0}.rt td,.rt th{padding-inline:10px}}
+
+/* ───────── footer: the three courses as ridgelines ───────── */
+footer.trail{background:none;padding:0;color:rgba(255,255,255,.75);font-size:.94rem;position:relative}
+.ridge{position:relative;height:clamp(120px,15vw,210px);margin-top:40px}
+.ridge svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ridge .r3{fill:color-mix(in srgb,var(--lime) 16%,transparent)}
+.ridge .r2{fill:color-mix(in srgb,#0B312F 70%,var(--bg))}
+.ridge .r1{fill:var(--night)}
+.ridge .crest{fill:none;stroke:var(--lime);stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;opacity:.9}
+.ridge .post line{stroke:color-mix(in srgb,var(--ink) 45%,transparent);stroke-width:1.5}
+.ridge .post circle{fill:#fff;stroke:#E23B3B;stroke-width:3.5}
+.ridge .runner{fill:var(--orange);filter:drop-shadow(0 0 8px var(--orange))}
+.ridge-lab{position:absolute;font-size:.64rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);white-space:nowrap;transform:translate(-50%,-100%);padding-bottom:12px}
+.foot-body{position:relative;background:var(--night);padding:20px 0 120px;overflow:hidden;isolation:isolate}
+.foot-topo{position:absolute;left:50%;top:0;width:1800px;height:1800px;margin-left:-900px;margin-top:-500px;opacity:.16;z-index:-1;pointer-events:none}
+.foot-cta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;padding-bottom:40px;margin-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-cta h2{font-size:clamp(2.6rem,6vw,5rem);font-weight:900;font-stretch:62%;line-height:.86;text-transform:uppercase;color:#fff}
+.foot-cta h2 em{font-style:normal;color:var(--lime)}
+.foot h4{display:flex;align-items:center;gap:10px}
+.blaze{flex:none;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,#fff 0 36%,#E23B3B 38%);box-shadow:0 0 0 2px rgba(255,255,255,.12)}
+.signs{display:grid;gap:8px;position:relative;padding-left:14px}
+.signs::before{content:"";position:absolute;left:3px;top:-6px;bottom:-14px;width:8px;border-radius:3px;background:linear-gradient(90deg,#5b4632,#7a5e43 50%,#5b4632)}
+.sign{--c:var(--lime);display:flex;align-items:center;justify-content:space-between;gap:10px;width:max-content;min-width:150px;min-height:38px;padding:0 26px 0 14px;background:var(--c);color:var(--on-fill)!important;font-weight:800;font-size:.86rem;text-decoration:none;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%);transform:rotate(-1.5deg);transition:transform .3s var(--ease),filter .3s}
+.sign:nth-child(even){transform:rotate(1.5deg) translateX(6px)}
+.sign:hover{transform:translateX(8px);filter:brightness(1.08)}
+.sign i{font-style:normal;font-size:.7rem;opacity:.7}
+.sign.y{--c:var(--yellow)}.sign.o{--c:var(--orange)}.sign.w{--c:#EDE7D6}
+.coords{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}.foot .about{grid-column:1/-1}.sign{min-width:0;width:calc(100% - 10px)}}
 /* ───────── movement: four stacked pillars ───────── */
 .pillars{display:grid;gap:22px}
 .pillar{--top:calc(92px + var(--i) * 18px);position:sticky;top:var(--top);min-height:min(600px,calc(100svh - var(--top) - 24px));display:grid;grid-template-columns:1fr 1fr;border-radius:28px;overflow:hidden;isolation:isolate;box-shadow:0 -24px 60px -30px rgba(0,0,0,.55)}
@@ -927,10 +984,15 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
   <div class="wrap">
     <div class="sec-head">
       <div><div class="kicker label rv"><b>05</b><span>Results archive</span></div>
-      <h2 class="h2 rv d1" id="resH">Every edition,<br><em>every winner.</em></h2></div>
+      <h2 class="h2 rv d1" id="resH">Every edition,<br><em>every finisher.</em></h2></div>
       <div class="rv d2" style="justify-self:end;max-width:100%"><div class="tabs" role="tablist" aria-label="Edition" id="resTabs"></div></div>
     </div>
-    <div id="resBody" role="tabpanel" aria-live="polite"></div>
+    <div id="resBody" role="tabpanel"></div>
+    <div class="rt rv" id="rt">
+      <div class="rt-bar"><div class="tabs" role="tablist" aria-label="Race" id="rtRace"></div><div class="tabs" role="tablist" aria-label="Category" id="rtSex"></div><label class="rt-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" id="rtQ" placeholder="Search name, bib or club" aria-label="Search the results" autocomplete="off"></label></div>
+      <div class="rt-scroll"><table><thead id="rtHead"></thead><tbody id="rtBody"></tbody></table></div>
+      <div class="rt-foot"><span id="rtCount" aria-live="polite"></span><span class="rt-links"><a class="btn line sm" id="rtPdf" href="#" target="_blank" rel="noopener">Complete results PDF <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="btn line sm" id="rtOpen" href="#" target="_blank" rel="noopener">Open on RaceResult <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></span></div>
+    </div>
   </div>
 </section>
 
@@ -1017,22 +1079,33 @@ footer{background:var(--night);color:rgba(255,255,255,.75);padding:60px 0 120px;
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div class="about">
-        <img src="https://prishtinatrails.com/wp-content/uploads/2025/07/Group-12-1.png" alt="Prishtina Trails" width="117" height="36">
-        <p style="margin:0;max-width:34ch">Prishtina Trails is organised by the X Trailers running club. Gërmia’s finest trails.</p>
-        <div class="socials">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
-        </div>
+<footer class="trail">
+  <div class="ridge" id="ridge" aria-hidden="true">
+    <svg id="ridgeSvg"><path class="r3"/><path class="r2"/><path class="r1"/><path class="crest"/><g class="post"></g><circle class="runner" r="5" cx="-20" cy="-20"/></svg>
+  </div>
+  <div class="foot-body">
+    <canvas class="foot-topo" id="footTopo" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="foot-cta">
+        <div><p class="label" style="color:var(--lime);margin:0 0 12px">Ultra start · 06:00 · 9 May 2027</p><h2>See you on<br><em>the trail.</em></h2></div>
+        <a class="btn" href="#races">Register for 2027 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div><h4>Races</h4><ul><li><a href="#course">Base 10K</a></li><li><a href="#course">Half 23K</a></li><li><a href="#course">Ultra 50K</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-      <div><h4>Explore</h4><ul><li><a href="#runners">Runners</a></li><li><a href="#movement">Movement</a></li><li><a href="#results">Results archive</a></li><li><a href="#gallery">Gallery</a></li></ul></div>
-      <div><h4>Contact</h4><ul><li>Rr. Agim Ramadani nr. 222</li><li>10000 Prishtinë</li><li><a href="mailto:info@prishtinatrails.com">info@prishtinatrails.com</a></li></ul></div>
+      <div class="foot">
+        <div class="about">
+          <img src="https://prishtinatrails.com/wp-content/uploads/2025/07/Group-12-1.png" alt="Prishtina Trails" width="117" height="36">
+          <p style="margin:0;max-width:34ch">Prishtina Trails is organised by the X Trailers running club. Follow the red-and-white markers: Gërmia’s finest trails.</p>
+          <div class="socials">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+          </div>
+        </div>
+        <div><h4><span class="blaze" aria-hidden="true"></span>Races</h4><ul><li><a href="#course">Base 10K · 480 m climb</a></li><li><a href="#course">Half 23K · 1,042 m climb</a></li><li><a href="#course">Ultra 50K · 2,021 m climb</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div><h4><span class="blaze" aria-hidden="true"></span>Explore</h4>
+          <nav class="signs" aria-label="Footer"><a class="sign" href="#runners">Runners <i>03</i></a><a class="sign y" href="#movement">Movement <i>04</i></a><a class="sign o" href="#results">Results <i>05</i></a><a class="sign w" href="#gallery">Gallery <i>06</i></a></nav></div>
+        <div><h4><span class="blaze" aria-hidden="true"></span>Contact</h4><ul><li>Rr. Agim Ramadani nr. 222</li><li>10000 Prishtinë</li><li><a href="mailto:info@prishtinatrails.com">info@prishtinatrails.com</a></li><li style="margin-top:8px;color:rgba(255,255,255,.55)">Start &amp; finish: Gërmia Park amphitheatre</li></ul></div>
+      </div>
+      <div class="legal"><span>© 2027 Prishtina Trails · X Trailers</span><span class="coords">42.6731° N · 21.1996° E · 666 m</span><span>Design mockup · not the live site</span></div>
     </div>
-    <div class="legal"><span>© 2027 Prishtina Trails · X Trailers</span><span>Design mockup · not the live site</span></div>
   </div>
 </footer>
 
@@ -1477,38 +1550,82 @@ const ROUTES = {"10k":[[42.67312,21.19966,666,0.0],[42.67339,21.19937,666,0.04],
     pick(keys[0]);
   }
 
-  /* results archive: winners from the race reports */
+  /* results archive: read live from RaceResult, the race's timing partner */
   {
-    const C = { u: '#FF701C', h: '#F2E94E', b: '#8FC762' };
-    const RES = {
-      2026: { ed: '8th edition', date: '10 May 2026', facts: [['500', 'runners'], ['20+', 'countries'], ['300', 'kids in the kids’ run'], ['25,000', 'bottle caps made into medals']],
-        races: [['50', 'K Ultra', C.u, ['Erzen Zyberaj', 'KOS'], ['Margot Navarro', 'FRA']], ['23', 'K Half', C.h, ['Albion Ymeri', 'KOS'], ['Stella Zinn', 'SUI']], ['10', 'K Base', C.b, ['Mikus Zagata', 'AUT'], ['Litfete Luta Shala', 'KOS']]],
-        src: 'prishtinatrails.com race report', link: 'https://itra.run/Races/RaceResults/Prishtina.Trails.50K.ULTRA/2026/107736' },
-      2025: { ed: '7th edition', date: '4 May 2025', facts: [['700+', 'participants over the weekend'], ['400', 'runners in the three main races'], ['21,000', 'bottle caps made into medals'], ['700', 'medals handed out']],
-        races: [['47', 'K Ultra', C.u, ['Erzen Zyberaj'], ['Ibadete Vokrri']], ['23', 'K Edge', C.h, ['Albion Ymeri'], ['Qendresa Ramadani']], ['10', 'K Classic', C.b, ['Genc Isufi'], ['Gresa Bakraçi']]],
-        src: 'Telegrafi race report' },
-      2024: { ed: '6th edition', date: '23 June 2024', facts: [['~300', 'runners'], ['5:29', 'winning time on the 47K Ultra']],
-        races: [['47', 'K Ultra', C.u, ['Fatmir Ismajli', '5:29'], ['Verona Kamenica', '7:48']]],
-        note: '10K and 23K winners are in the full results.', src: 'Telegrafi race report' },
-      2023: { ed: '5th edition', date: '10–11 June 2023', facts: [['23.1 km', 'on the half, with 1,040 m of climbing'], ['6 h', 'cut-off on the half']],
-        races: [], note: 'Winners for 2023 are in the full results.', src: 'ITRA' },
-      2022: { ed: '4th edition', date: '9 October 2022', facts: [['60 km', 'the longest Ultra yet'], ['2,210 m', 'of climbing on the 60K'], ['3', 'races: 10K, 21K and 60K'], ['12 h', 'cut-off on the 60K']],
-        races: [], note: 'Winners for 2022 are in the full results.', src: 'ITRA', link: 'https://itra.run/Races/RaceResults/Prishtina.Trails.60K/2022/79049' }
+    const EV = {
+      2026: { id: 397355, ed: '8th edition', date: '10 May 2026', names: ['Base', 'Half', 'Ultra'], extra: [['300', 'kids in the kids’ run'], ['25,000', 'bottle caps made into medals']] },
+      2025: { id: 338114, ed: '7th edition', date: '4 May 2025', names: ['Classic', 'Edge', 'Ultra'], extra: [['700+', 'people over the weekend'], ['21,000', 'bottle caps made into medals']] },
+      2024: { id: 296611, ed: '6th edition', date: '23 June 2024', extra: [] },
+      2023: { id: 245313, ed: '5th edition', date: '11 June 2023', extra: [] },
+      2022: { id: 222415, ed: '4th edition', date: '9 October 2022', extra: [] }
     };
-    const win = (who, sex) => who ? `<div><span class="label">${sex}</span><b>${who[0]}</b>${who[1] ? `<i>${who[1]}</i>` : ''}</div>` : '';
-    const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>';
-    tabs($('#resTabs'), Object.keys(RES).sort((a, b) => b - a), k => k, y => {
-      const r = RES[y];
-      $('#resBody').innerHTML = `<div class="res">
-        <div><div class="res-year" aria-hidden="true">${y}</div>
-          <div class="res-meta"><span>${r.ed}</span><span>${r.date}</span></div>
-          <div class="res-facts">${r.facts.map(([b, t]) => `<div class="res-fact"><b>${b}</b><span>${t}</span></div>`).join('')}</div></div>
-        <div class="res-races">
-          ${r.races.length ? r.races.map(([n, u, c, m, w]) => `<div class="res-race"><div class="res-tag" style="--c:${c}"><div><b>${n}K</b><small>${u.slice(2)}</small></div></div><div class="res-win">${win(m, 'Men’s winner')}${win(w, 'Women’s winner')}</div></div>`).join('') : ''}
-          ${r.note ? `<div class="res-empty">${r.note}</div>` : ''}
-          <div class="res-foot"><span>Source: ${r.src}</span><a class="btn line sm" href="${r.link || '#'}" ${r.link ? 'target="_blank" rel="noopener"' : ''}>Full results ${arrow}</a></div>
-        </div></div>`;
-    });
+    const COL = ['#8FC762', '#F2E94E', '#FF701C'];
+    const esc = v => String(v ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+    const strip = k => k.replace(/^#\d+_/, '');
+    const flag = n => n ? `<span class="flag"><img src="https://my.raceresult.com/graphics/flags/${n}.svg" alt="" loading="lazy">${n}</span>` : '';
+    const sexName = g => /^f/i.test(g) ? 'Women' : /^m/i.test(g) ? 'Men' : g;
+    const cache = {};
+    // the same two calls RaceResult's own embed makes: event config, then the final list split by race and gender
+    const load = y => cache[y] ||= (async () => {
+      const id = EV[y].id;
+      const c = await fetch(`https://my.raceresult.com/${id}/RRPublish/data/config?page=results&noVisitor=1`).then(r => r.json());
+      const L = c.lists.find(l => /final/i.test(l.Name)) || c.lists[0];
+      const host = `https://${c.server}/${id}/RRPublish/data`;
+      const q = new URLSearchParams({ key: c.key, listname: L.Name, page: 'results', contest: L.Contest || '0', r: 'all', l: '0', f: '<Ignore>\f\f<Ignore>' });
+      const d = await fetch(`${host}/list?${q}`).then(r => r.json());
+      const F = d.DataFields, at = k => F.indexOf(k);
+      const iRank = F.findIndex(f => /RANK/i.test(f)), iBib = at('BIB'), iName = at('DisplayName'), iNat = F.findIndex(f => /FLAG/i.test(f)), iClub = at('CLUB'), iPace = F.findIndex(f => /PACE/i.test(f));
+      const iTime = ['Finish.CHIP', 'Finish.GUN', 'Finish.TIME'].map(at).find(i => i >= 0) ?? F.findIndex(f => /finish|chip/i.test(f) && !/pace|start/i.test(f));
+      const row = r => { const nm = r[iName] || '', [last, first] = nm.split(', '); return { pl: r[iRank] || '', bib: r[iBib] || '', name: first ? `${first} ${last}` : nm, nat: (r[iNat] || '').match(/flags\/([A-Z]{2})/)?.[1] || '', club: iClub >= 0 ? r[iClub] : '', time: r[iTime] || '', pace: iPace >= 0 ? r[iPace] : '' }; };
+      const races = Object.entries(d.data).map(([rk, rv]) => ({ name: strip(rk),
+        groups: Array.isArray(rv) ? [{ name: 'All', rows: rv.map(row) }] : Object.entries(rv).map(([gk, gv]) => ({ name: sexName(strip(gk)), rows: (Array.isArray(gv) ? gv : Object.values(gv).flat()).map(row) })) }));
+      return { races, club: iClub >= 0, pace: iPace >= 0, pdf: `${host}/pdf?name=${encodeURIComponent(L.Name)}&contest=${L.Contest || 0}&lang=en`, open: `https://my.raceresult.com/${id}/results` };
+    })();
+
+    let cur, R, ri = 0, gi = 0;
+    const km = n => n.match(/\d+/)?.[0] || n;
+    const done = r => /^\d/.test(r.pl);
+
+    function table() {
+      const g = R.races[ri].groups[gi], term = $('#rtQ').value.trim().toLowerCase();
+      const rows = term ? g.rows.filter(r => `${r.name} ${r.bib} ${r.club}`.toLowerCase().includes(term)) : g.rows;
+      $('#rtHead').innerHTML = `<tr><th>Pl.</th><th>Name</th><th>Nat.</th>${R.club ? '<th class="c-club">Club</th>' : ''}<th class="c-bib r">Bib</th><th class="r">Time</th>${R.pace ? '<th class="c-pace r">Pace</th>' : ''}</tr>`;
+      $('#rtBody').innerHTML = rows.length ? rows.map(r => {
+        const n = parseInt(r.pl), pl = done(r) ? `<span class="pl${n <= 3 ? ' p' + n : ''}">${n}</span>` : `<span class="pl st">${esc(r.pl || '–')}</span>`;
+        return `<tr><td>${pl}</td><td class="nm">${esc(r.name)}</td><td>${flag(r.nat)}</td>${R.club ? `<td class="c-club">${esc(r.club)}</td>` : ''}<td class="c-bib r">${esc(r.bib)}</td><td class="r"><b>${esc(r.time)}</b></td>${R.pace ? `<td class="c-pace r">${esc(r.pace)}${r.pace ? '<small class="muted"> /km</small>' : ''}</td>` : ''}</tr>`;
+      }).join('') : `<tr><td colspan="7" class="rt-msg">No runner matches “${esc(term)}”.</td></tr>`;
+      const fin = g.rows.filter(done).length;
+      $('#rtCount').textContent = `${R.races[ri].name} · ${g.name}: ${fin} finishers${term ? ` · ${rows.length} shown` : ''}`;
+    }
+
+    function sexTabs() { tabs($('#rtSex'), R.races[ri].groups.map((g, i) => String(i)), i => R.races[ri].groups[i].name, i => { gi = +i; table(); }); }
+
+    async function year(y) {
+      cur = y; const e = EV[y];
+      $('#resBody').innerHTML = `<div class="res"><div><div class="res-year" aria-hidden="true">${y}</div><div class="res-meta"><span>${e.ed}</span><span>${e.date}</span></div><div class="res-facts" id="resFacts">${'<div class="res-fact"><span class="sk" style="width:60%;height:26px"></span><span class="sk" style="width:80%;margin-top:10px"></span></div>'.repeat(4)}</div></div>
+        <div class="res-races" id="resWin">${'<div class="res-race"><div class="res-tag" style="--c:var(--line)"></div><div><span class="sk" style="width:70%"></span><span class="sk" style="width:40%;margin-top:10px"></span></div></div>'.repeat(3)}</div></div>`;
+      $('#rtBody').innerHTML = `<tr><td colspan="7" class="rt-msg">Loading results from RaceResult…</td></tr>`; $('#rtHead').innerHTML = ''; $('#rtCount').textContent = '';
+      $('#rtOpen').href = `https://my.raceresult.com/${e.id}/results`;
+      try { R = await load(y); } catch (err) {
+        delete cache[y]; if (cur !== y) return;
+        const link = `<a href="https://my.raceresult.com/${e.id}/results" target="_blank" rel="noopener">open the ${y} results on RaceResult</a>`;
+        $('#resWin').innerHTML = `<div class="res-empty">We couldn’t reach RaceResult just now. You can ${link}.</div>`; $('#resFacts').innerHTML = '';
+        $('#rtBody').innerHTML = `<tr><td colspan="7" class="rt-msg">We couldn’t load the results. You can ${link}.</td></tr>`; return;
+      }
+      if (cur !== y) return;
+      const all = R.races.flatMap(r => r.groups.flatMap(g => g.rows)).filter(done);
+      const facts = [[all.length.toLocaleString('en'), 'finishers across ' + R.races.length + ' races'], [new Set(all.map(r => r.nat).filter(Boolean)).size, 'nations among the finishers'], ...e.extra].slice(0, 4);
+      $('#resFacts').innerHTML = facts.map(([b, t]) => `<div class="res-fact"><b>${b}</b><span>${t}</span></div>`).join('');
+      $('#resWin').innerHTML = R.races.map((r, i) => {
+        const w = r.groups.map(g => { const x = g.rows.find(z => parseInt(z.pl) === 1); return x ? `<div><span class="label">${g.name === 'All' ? 'Winner' : g.name === 'Women' ? 'Women’s winner' : 'Men’s winner'}</span><b>${esc(x.name)}</b><i>${x.nat ? x.nat + ' · ' : ''}${esc(x.time)}</i></div>` : ''; }).join('');
+        return `<div class="res-race"><div class="res-tag" style="--c:${COL[i] || COL[2]}"><div><b>${km(r.name)}K</b><small>${e.names?.[i] || 'Race'}</small></div></div><div class="res-win">${w}</div></div>`;
+      }).join('') + `<div class="res-foot"><span>Official timing by RaceResult</span></div>`;
+      $('#rtPdf').href = R.pdf; $('#rtOpen').href = R.open;
+      ri = 0; gi = 0; $('#rtQ').value = '';
+      tabs($('#rtRace'), R.races.map((r, i) => String(i)), i => `${km(R.races[i].name)}K`, i => { ri = +i; gi = 0; sexTabs(); });
+    }
+    $('#rtQ').addEventListener('input', () => R && table());
+    tabs($('#resTabs'), Object.keys(EV).sort((a, b) => b - a), k => k, year);
   }
 
   /* gallery by year, from the race-day photos */
@@ -1539,6 +1656,37 @@ const ROUTES = {"10k":[[42.67312,21.19966,666,0.0],[42.67339,21.19937,666,0.04],
     lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
     lb.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(at + 1); if (e.key === 'ArrowLeft') show(at - 1); });
     lb.addEventListener('close', () => document.documentElement.classList.remove('modal-open'));
+  }
+
+  /* footer ridgelines: the 10K, 23K and 50K profiles, with the 50K in front and a runner on its crest */
+  {
+    const box = $('#ridge'), svg = $('#ridgeSvg'), [r3, r2, r1, crest] = $$('path', svg), post = $('.post', svg), dot = $('.runner', svg);
+    let pts = [], vis = false;
+    const prof = (k, H, top, lo, hi) => { const p = ROUTES[k], W = box.clientWidth, L = p[p.length - 1][3]; return p.map(q => [q[3] / L * W, top + (1 - (q[2] - lo) / (hi - lo)) * (H - top)]); };
+    const d = (a, H) => 'M' + a.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join('L') + (H ? `L${box.clientWidth},${H}L0,${H}Z` : '');
+    function draw() {
+      const W = box.clientWidth, H = box.clientHeight;
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      r3.setAttribute('d', d(prof('10k', H, 0, 600, 1000), H + 2));
+      r2.setAttribute('d', d(prof('23k', H, H * .12, 560, 1100), H + 2));
+      pts = prof('50k', H, H * .3, 600, 1120);
+      r1.setAttribute('d', d(pts, H + 2)); crest.setAttribute('d', d(pts));
+      // a trail-marker post at the start and at the high point
+      const hi = pts.reduce((m, q, i) => q[1] < pts[m][1] ? i : m, 0);
+      post.innerHTML = [[pts[Math.round(pts.length * .04)], ''], [pts[hi], '']].map(([[x, y]]) => `<line x1="${x}" y1="${y}" x2="${x}" y2="${y - 26}"/><circle cx="${x}" cy="${y - 30}" r="6"/>`).join('');
+    }
+    draw(); addEventListener('resize', () => requestAnimationFrame(draw));
+    if (!reduce) {
+      new IntersectionObserver(([en]) => { vis = en.isIntersecting; if (vis) requestAnimationFrame(run); }).observe(box);
+      const t0 = performance.now();
+      function run(t) {
+        if (!vis) return;
+        const f = ((t - t0) / 40000) % 1, i = f * (pts.length - 1), a = pts[Math.floor(i)], b = pts[Math.min(pts.length - 1, Math.ceil(i))], k = i % 1;
+        dot.setAttribute('cx', (a[0] + (b[0] - a[0]) * k).toFixed(1)); dot.setAttribute('cy', (a[1] + (b[1] - a[1]) * k - 4).toFixed(1));
+        requestAnimationFrame(run);
+      }
+    }
+    topo($('#footTopo'), 22, 31, '#8FC762', '#F2E94E');
   }
 
   /* count-up */
